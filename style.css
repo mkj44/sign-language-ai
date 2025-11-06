@@ -1,0 +1,266 @@
+/*
+ * Sign Language Translator: Modern, High-Contrast Theme
+ * Inspired by tech interfaces for clear visual feedback.
+ */
+
+:root {
+    /* Define a color palette for easy updates */
+    --color-primary: #66fcf1; /* Cyan/Aqua - for interaction/feedback */
+    --color-secondary: #45a8a6; /* Darker Cyan - hover state */
+    --color-background-dark: #1f2833; /* Dark background */
+    --color-text-light: #c5c6c7; /* Light grey for body text */
+    --color-card-background: #0b0c10; /* Near-black for main sections */
+    --color-success: #00ff99; /* Green for success/active states */
+    --color-error: #ff4d4d; /* Red for errors */
+}
+
+body {
+    margin: 0;
+    /* Use a simple, modern sans-serif stack */
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* --- Typography --- */
+h1 {
+    margin: 0 0 20px 0;
+    color: var(--color-primary); /* Use primary color for main header */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2.5em;
+    /* Subtle text shadow for a 'glow' effect */
+    text-shadow: 0 0 5px rgba(102, 252, 241, 0.5);
+}
+
+h2 {
+    color: var(--color-primary);
+    font-size: 1.4em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* --- Video/Camera Section --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    /* 3D-like container look */
+    border: 3px solid var(--color-secondary);
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+    /* No border-radius on video itself, let wrapper handle it */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#cameraStatus {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--color-primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    z-index: 3;
+}
+
+/* --- Controls/Buttons --- */
+.controls {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-card-background); /* Dark text on bright button */
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    background-color: #3f4a59; /* Muted dark disabled */
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--color-secondary);
+    color: var(--color-background-dark);
+    transform: translateY(-2px); /* Subtle lift on hover */
+    box-shadow: 0 6px 15px rgba(102, 252, 241, 0.6);
+}
+
+label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* --- Output Section --- */
+.output {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--color-card-background);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-secondary);
+    text-align: center;
+}
+
+#label {
+    font-size: 3.5em; /* Large and clear */
+    font-weight: 900;
+    margin: 15px 0;
+    color: var(--color-success); /* Green for detected sign */
+    text-shadow: 0 0 10px rgba(0, 255, 153, 0.7);
+    min-height: 1.2em; /* Ensure stable height */
+}
+
+/* --- Confidence Bar --- */
+#confidenceBarWrap {
+    width: 80%;
+    height: 15px;
+    background: #3f4a59; /* Darker track */
+    border-radius: 7px;
+    margin: 10px auto;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+#confidenceBar {
+    height: 100%;
+    width: 0;
+    background: var(--color-primary);
+    transition: width 0.3s ease-out;
+    /* Subtle gradient for depth */
+    background: linear-gradient(90deg, #3f4a59 0%, var(--color-primary) 100%);
+}
+
+#confidenceText {
+    margin-top: 10px;
+    color: var(--color-text-light);
+}
+
+/* --- Transcription Output --- */
+.transcription-output {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px dashed var(--color-secondary);
+}
+
+#spokenTranscription {
+    font-size: 1.2em;
+    font-style: italic;
+    color: #fff; /* Bright white for high readability */
+    padding: 5px;
+    background: rgba(102, 252, 241, 0.1);
+    border-radius: 5px;
+    min-height: 1.2em;
+}
+
+/* --- Text Input Section (Mute User Input) --- */
+.text-input-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--color-card-background);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-secondary);
+    text-align: left;
+}
+
+textarea#textToSpeak {
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    resize: vertical;
+    font-size: 1em;
+}
+
+#speakTextBtn {
+    width: 100%;
+    padding: 12px;
+    /* Make this button visually distinct */
+    background-color: var(--color-success);
+    color: var(--color-background-dark);
+}
+
+#speakTextBtn:hover:not(:disabled) {
+    background-color: #00e68c;
+    box-shadow: 0 6px 15px rgba(0, 255, 153, 0.6);
+}
+
+/* --- Instructions/Info --- */
+.instructions {
+    margin-top: 40px;
+    text-align: left;
+    background: var(--color-card-background);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+    border-left: 5px solid var(--color-primary);
+}
+
+.instructions h3 {
+    color: var(--color-primary);
+    margin-top: 0;
+}
+
+.instructions ol, .instructions p {
+    color: var(--color-text-light);
+    padding-left: 20px;
+}
+
+/* --- Separator --- */
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--color-secondary);
+    margin: 30px 0;
+    box-shadow: 0 0 5px var(--color-primary);
+}

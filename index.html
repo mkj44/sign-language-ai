@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Language Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Language Translator</h1> <div class="video-wrapper">
+      <video id="webcam" autoplay playsinline muted></video>
+      <canvas id="overlay"></canvas>
+      <div id="cameraStatus">Camera: Not Started</div> </div>
+
+    <div class="controls">
+      <button id="startBtn">Start Recognition</button> <button id="stopBtn" disabled>Stop Recognition</button> <button id="loadModelBtn">Load Model</button>
+      <label>
+        <input type="checkbox" id="speakToggle" checked /> Speak Output
+      </label>
+    </div>
+
+    <div class="output">
+      <h2>Detected Sign (Mute User Output):</h2>
+      <div id="label" class="detected-label">—</div> <div id="confidenceBarWrap">
+        <div id="confidenceBar"></div>
+      </div>
+      <div id="confidenceText">Confidence: —</div>
+      
+      <div class="transcription-output">
+        <h2>Spoken Output Transcription (Deaf User Input):</h2>
+        <p id="spokenTranscription">—</p>
+      </div>
+    </div>
+    
+    <hr> <div class="text-input-section">
+      <h2>Type & Speak (Mute User Input)</h2>
+      <textarea id="textToSpeak" rows="2" placeholder="Type a message to be spoken..."></textarea>
+      <button id="speakTextBtn">Speak Typed Message</button>
+    </div>
+
+    <div class="instructions">
+      <h3>How to use:</h3>
+      <ol>
+        <li>Click "Load Model" to load the sign language model.</li>
+        <li>Click "Start Recognition" to begin real-time sign recognition.</li>
+        <li>**Mute Users:** Sign or use the "Type & Speak" box below.</li>
+        <li>**Deaf Users:** Read the spoken text in the "Spoken Output Transcription" area.</li>
+      </ol>
+      <p>⚠️ Always check the **Confidence** level for best results.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
