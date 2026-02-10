@@ -73,5 +73,3 @@ This project focuses on using AI and computer vision concepts to make communicat
 🤝 Conclusion
 
 This project demonstrates how AI can be used for social good by improving communication accessibility. Sign Language AI is a step toward a more inclusive and empathetic society.
-
-⸻
